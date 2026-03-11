@@ -12,9 +12,9 @@ public protocol EnvironmentInjectingRuntime {
   var environmentInjector: EnvironmentInjector { get }
 }
 
-public extension EnvironmentInjectingRuntime {
+extension EnvironmentInjectingRuntime {
   /// Applies the runtime's environment values to the supplied content.
-  func inject<Content: View>(_ content: Content) -> some View {
+  public func inject<Content: View>(_ content: Content) -> some View {
     content.modifier(environmentInjector)
   }
 }

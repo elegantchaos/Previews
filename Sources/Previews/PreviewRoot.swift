@@ -2,7 +2,8 @@ import SwiftUI
 
 /// SwiftUI host that builds preview state once and injects the runtime environment into content.
 @MainActor
-public struct PreviewRoot<Runtime, Fixture, Content: View>: View where Runtime: EnvironmentInjectingRuntime {
+public struct PreviewRoot<Runtime, Fixture, Content: View>: View
+where Runtime: EnvironmentInjectingRuntime {
   /// Content builder that renders the preview using the built fixture.
   public let content: (Fixture) -> Content
 
