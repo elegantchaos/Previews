@@ -1,4 +1,6 @@
 /// Result of building a preview scenario.
+///
+/// This value carries both the runtime used for environment injection and the fixture rendered by the preview.
 @MainActor
 public struct PreviewBuilt<Runtime, Fixture> {
   /// Runtime used to inject environment for the preview.

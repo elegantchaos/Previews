@@ -1,4 +1,6 @@
 /// Builder for a preview runtime and its fixture data.
+///
+/// A scenario defers construction until the preview host needs a concrete runtime and fixture.
 @MainActor
 public struct PreviewScenario<Runtime, Fixture> {
   /// Closure that builds the runtime and fixture.

@@ -11,7 +11,7 @@ let package = Package(
     .library(
       name: "Previews",
       targets: ["Previews"]
-    ),
+    )
   ],
   targets: [
     .target(
@@ -26,16 +26,16 @@ let package = Package(
 
 for target in package.targets {
   switch target.type {
-    case .regular, .test:
-      var settings = target.swiftSettings ?? []
-      settings.append(contentsOf: [
-        .defaultIsolation(MainActor.self),
-        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableUpcomingFeature("InferIsolatedConformances"),
-        .enableExperimentalFeature("SendableProhibitsMainActorInference"),
-      ])
-      target.swiftSettings = settings
-    default:
-      continue
+  case .regular, .test:
+    var settings = target.swiftSettings ?? []
+    settings.append(contentsOf: [
+      .defaultIsolation(MainActor.self),
+      .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+      .enableUpcomingFeature("InferIsolatedConformances"),
+      .enableExperimentalFeature("SendableProhibitsMainActorInference"),
+    ])
+    target.swiftSettings = settings
+  default:
+    continue
   }
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// SwiftUI host that builds preview state once and injects runtime environment.
+/// SwiftUI host that builds preview state once and injects the runtime environment into content.
 @MainActor
 public struct PreviewRoot<Runtime, Fixture, Content: View>: View where Runtime: EnvironmentInjectingRuntime {
   /// Content builder that renders the preview using the built fixture.
@@ -8,7 +8,7 @@ public struct PreviewRoot<Runtime, Fixture, Content: View>: View where Runtime: 
 
   @State private var storage: PreviewStorage<Runtime, Fixture>
 
-  /// Creates a preview root for the supplied scenario.
+  /// Creates a preview root that builds the supplied scenario once for this host instance.
   public init(
     _ scenario: PreviewScenario<Runtime, Fixture>,
     @ViewBuilder content: @escaping (Fixture) -> Content
@@ -23,7 +23,7 @@ public struct PreviewRoot<Runtime, Fixture, Content: View>: View where Runtime: 
   }
 }
 
-/// Persistent storage that ensures a preview scenario is built once per host instance.
+/// Persistent storage that ensures a preview scenario is built only once per host instance.
 @MainActor
 final class PreviewStorage<Runtime, Fixture> {
   /// Built preview runtime and fixture.
