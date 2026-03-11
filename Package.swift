@@ -13,6 +13,9 @@ let package = Package(
       targets: ["Previews"]
     )
   ],
+  dependencies: [
+    .package(url: "https://github.com/elegantchaos/ActionBuilderPlugin.git", from: "2.1.2")
+  ],
   targets: [
     .target(
       name: "Previews"
@@ -27,7 +30,7 @@ let package = Package(
 for target in package.targets {
   switch target.type {
   case .regular, .test:
-    var settings = target.swiftSettings ?? []
+    var settings: [SwiftSetting] = target.swiftSettings ?? []
     settings.append(contentsOf: [
       .defaultIsolation(MainActor.self),
       .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
